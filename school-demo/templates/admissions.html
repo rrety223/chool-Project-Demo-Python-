@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Admissions{% endblock %}
+{% block content %}
+<section class="page-header">
+  <div class="container">
+    <h1>Admissions</h1>
+    <p class="lead">We welcome students from Grade 9 to Grade 12 who are ready to grow with us.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>How to apply</h2>
+    <ol class="steps">
+      <li><h3>Submit an application</h3><p>Complete the online form or request a paper copy from the front office.</p></li>
+      <li><h3>Attend an interview</h3><p>Meet our admissions team and tour the campus with your family.</p></li>
+      <li><h3>Take the placement test</h3><p>The test helps us place students in the right courses.</p></li>
+      <li><h3>Receive your decision</h3><p>Decisions are sent by email within 14 days of the interview.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container split">
+    <div>
+      <h2>Key dates</h2>
+      <ul class="check-list">
+        <li>Open House: October 18, 9:00 AM</li>
+        <li>Application deadline: February 1</li>
+        <li>Placement tests: March 5 and March 12</li>
+        <li>New student orientation: August 25</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Tuition and aid</h2>
+      <p>Public high school students attend at no tuition cost. Families who need help with fees, uniforms or transport can apply for support through the front office.</p>
+      <a class="btn btn-primary" href="{{ url_for('contact') }}">Ask an admissions question</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

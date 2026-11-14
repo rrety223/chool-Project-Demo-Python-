@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}News{% endblock %}
+{% block content %}
+<section class="page-header">
+  <div class="container">
+    <h1>School News</h1>
+    <p class="lead">The latest updates from our classrooms, clubs and teams.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    {% for item in news %}
+    <article class="news-item">
+      <time datetime="{{ item.date }}">{{ item.date }}</time>
+      <h3>{{ item.title }}</h3>
+      <p>{{ item.summary }}</p>
+    </article>
+    {% else %}
+    <p>No news at the moment. Please check back later.</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

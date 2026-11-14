@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Programs{% endblock %}
+{% block content %}
+<section class="page-header">
+  <div class="container">
+    <h1>Academic Programs</h1>
+    <p class="lead">Our curriculum combines core subjects with electives that let students follow their interests.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="card-grid">
+      {% for program in programs %}
+      <article class="card">
+        <span class="card-icon" aria-hidden="true">{{ program.icon }}</span>
+        <h3>{{ program.title }}</h3>
+        <p>{{ program.description }}</p>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}
