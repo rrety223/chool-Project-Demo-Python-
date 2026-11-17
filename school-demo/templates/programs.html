@@ -1,6 +1,16 @@
 {% extends "base.html" %}
 {% block title %}Programs{% endblock %}
 {% block content %}
+{# Front-end grouping of programs by title, used by the group filter. #}
+{% set groups = {
+  "Mathematics": "STEM",
+  "Science": "STEM",
+  "Computer Science": "STEM",
+  "Languages & Literature": "Humanities & Arts",
+  "Arts & Design": "Humanities & Arts",
+  "Sports & Wellness": "Sports & Wellness",
+} %}
+
 <section class="page-header">
   <div class="container">
     <h1>Academic Programs</h1>
@@ -9,16 +19,35 @@
 </section>
 
 <section class="section">
-  <div class="container">
+  <div class="container" data-filter-root>
+    <form class="filter-bar" role="search" onsubmit="return false;">
+      <div class="field-inline">
+        <label for="program-search">Search</label>
+        <input type="search" id="program-search" data-filter-search placeholder="Search programs" autocomplete="off">
+      </div>
+      <div class="field-inline">
+        <label for="program-group">Subject group</label>
+        <select id="program-group" data-filter-select>
+          <option value="">All groups</option>
+          <option value="STEM">STEM</option>
+          <option value="Humanities & Arts">Humanities &amp; Arts</option>
+          <option value="Sports & Wellness">Sports &amp; Wellness</option>
+        </select>
+      </div>
+    </form>
+    <p class="filter-count" data-filter-count aria-live="polite"></p>
+
     <div class="card-grid">
       {% for program in programs %}
-      <article class="card">
+      <article class="card" data-filter-item data-filter-value="{{ groups[program.title] }}">
         <span class="card-icon" aria-hidden="true">{{ program.icon }}</span>
         <h3>{{ program.title }}</h3>
         <p>{{ program.description }}</p>
       </article>
       {% endfor %}
     </div>
+
+    <p class="no-results" data-filter-empty hidden>No programs match your search. Try a different keyword or group.</p>
   </div>
 </section>
 {% endblock %}

@@ -9,9 +9,34 @@
 </section>
 
 <section class="section">
-  <div class="container">
+  <div class="container" data-filter-root>
+    {# Collect the unique year-month values, for example "2025-09", for the month filter. #}
+    {% set ns = namespace(months=[]) %}
     {% for item in news %}
-    <article class="news-item">
+      {% if item.date[:7] not in ns.months %}
+        {% set _ = ns.months.append(item.date[:7]) %}
+      {% endif %}
+    {% endfor %}
+
+    <form class="filter-bar" role="search" onsubmit="return false;">
+      <div class="field-inline">
+        <label for="news-search">Search</label>
+        <input type="search" id="news-search" data-filter-search placeholder="Search news" autocomplete="off">
+      </div>
+      <div class="field-inline">
+        <label for="news-month">Month</label>
+        <select id="news-month" data-filter-select>
+          <option value="">All months</option>
+          {% for month in ns.months %}
+          <option value="{{ month }}">{{ month }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </form>
+    <p class="filter-count" data-filter-count aria-live="polite"></p>
+
+    {% for item in news %}
+    <article class="news-item" data-filter-item data-filter-value="{{ item.date[:7] }}">
       <time datetime="{{ item.date }}">{{ item.date }}</time>
       <h3>{{ item.title }}</h3>
       <p>{{ item.summary }}</p>
@@ -19,6 +44,10 @@
     {% else %}
     <p>No news at the moment. Please check back later.</p>
     {% endfor %}
+
+    {% if news %}
+    <p class="no-results" data-filter-empty hidden>No news matches your search. Try a different keyword or month.</p>
+    {% endif %}
   </div>
 </section>
 {% endblock %}

@@ -383,6 +383,51 @@ h3 { font-size: 1.2rem; margin: 0.5rem 0; }
   font-size: 0.85rem;
 }
 
+/* Search and filter controls */
+[hidden] { display: none !important; }
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  align-items: flex-end;
+  margin-bottom: 1rem;
+}
+
+.field-inline {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1 1 220px;
+}
+.field-inline label { font-weight: 600; font-size: 0.95rem; }
+
+.field-inline input,
+.field-inline select {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #c3ccd6;
+  border-radius: 6px;
+  font: inherit;
+  background: #fff;
+}
+.field-inline input:focus,
+.field-inline select:focus {
+  outline: 3px solid rgba(242, 165, 65, 0.5);
+  border-color: var(--primary);
+}
+
+.filter-count {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0 0 1.25rem;
+}
+
+.no-results {
+  color: var(--muted);
+  padding: 2rem 0;
+  text-align: center;
+}
+
 /* Responsive layout */
 @media (max-width: 800px) {
   .nav-toggle { display: inline-block; }
